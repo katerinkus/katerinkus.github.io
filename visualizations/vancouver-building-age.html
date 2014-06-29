@@ -1,0 +1,101 @@
+---
+layout: gis
+title: Vancouver Building Age
+permalink: /gis/vancouver-building-age/
+---
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+<style>
+    #map {
+        height: 550px;
+        width: 100%
+    }
+</style>
+
+<div id="map"></div>
+
+<script>
+    var map = L.map('map').setView([49.254837, -123.1382151], 12);
+
+    L.tileLayer('http://174.6.208.25:1337/vancouver/{z}/{x}/{y}.png', {
+        minZoom: 12,
+        maxZoom: 18
+    }).addTo(map);
+</script>
+
+<div class="my-legend">
+ <div class='legend-title'>City of Vancouver Building Age (up to 2013)</div>
+ <div class='legend-scale'>
+  <ul class='legend-labels'>
+    <li><span style='background:#f6f477;'></span>1800s</li>
+    <li><span style='background:#ffe00c;'></span>1900s</li>
+    <li><span style='background:#fdbf34;'></span>1910s</li>
+    <li><span style='background:#fd900c;'></span>1920s</li>
+    <li><span style='background:#f16f2d;'></span>1930s</li>
+    <li><span style='background:#d24b2d;'></span>1940s</li>
+    <li><span style='background:#b54545;'></span>1950s</li>
+    <li><span style='background:#835771;'></span>1960s</li>
+    <li><span style='background:#576aaf;'></span>1970s</li>
+    <li><span style='background:#3b8bf3;'></span>1980s</li>
+    <li><span style='background:#4fabe5;'></span>1990s</li>
+    <li><span style='background:#53cde0;'></span>2000s</li>
+    <li><span style='background:#82ecd0;'></span>2010s</li>
+    <li id='PARK'><span style='background:#fff;'></span>Park</li>
+  </ul>
+ </div>
+ <div class='legend-source'>Data source: <a href="http://data.vancouver.ca/datacatalogue/">Open Data City of Vancouver</a></div>
+</div>
+
+<style type='text/css'>
+  .my-legend {
+    position: absolute;
+    left: 70;
+    top: 20;
+    background-color: #f9f9f9;
+    padding: 10px;
+  }
+
+  .my-legend .legend-title {
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 90%;
+  }
+  .my-legend .legend-scale ul {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+  }
+  .my-legend .legend-scale ul li {
+    display: block;
+    float: left;
+    width: 40px;
+    margin-bottom: 6px;
+    text-align: center;
+    font-size: 80%;
+    list-style: none;
+  }
+  .my-legend ul.legend-labels li span {
+    display: block;
+    float: left;
+    height: 15px;
+    width: 40px;
+  }
+  .my-legend .legend-source {
+    font-size: 70%;
+    color: #999;
+    clear: both;
+  }
+  .my-legend a {
+    color: #777;
+  }
+  li#PARK span {
+    height: 13px;
+    width: 38px;
+    margin-left: 2px;
+   border: 1px solid #a4a4a4;
+   }
+</style>
