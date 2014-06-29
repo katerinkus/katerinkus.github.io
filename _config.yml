@@ -8,3 +8,7 @@ url: "http://www.aristova.me"
 # Build settings
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
+page_list:
+    About: "/about"
+    Blog: "/blog"
+    Visualizations: "/visualizations"
