@@ -130,6 +130,14 @@ image_preview: http://i.imgur.com/eCpWlIG.png
 
     L.control.fullscreen().addTo(map);
 
+    map.on('zoomend', function(e) {
+        ga('send', 'event', 'map_interaction', 'zoom');
+    });
+
+    map.on('dragend', function(e) {
+        ga('send', 'event', 'map_interaction', 'drag');
+    });
+
     if (geoPosition.init()) {
         geoPosition.getCurrentPosition(
             // success
@@ -147,10 +155,14 @@ image_preview: http://i.imgur.com/eCpWlIG.png
                 ).addTo(map);
 
                 marker.bindPopup("<b>Hey!</b><br>You are here.").openPopup();
+
+                ga('send', 'event', 'geolocation', 'success', 'js', p.coords.accuracy);
             },
 
             // error
-            function (e) {},
+            function (e) {
+                ga('send', 'event', 'geolocation', 'failure');
+            },
 
             // options
             {
