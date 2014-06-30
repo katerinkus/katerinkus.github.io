@@ -11,4 +11,7 @@
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
     <link rel="stylesheet" href="{{ "/css/me.css" | prepend: site.baseurl }}">
 
+    {% if page.image_preview %}
+    <meta property="og:image" content="{{ page.image_preview }}" />
+    {% endif %}
 </head>
