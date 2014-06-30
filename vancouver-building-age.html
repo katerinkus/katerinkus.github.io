@@ -4,8 +4,14 @@ title: Vancouver Building Age
 permalink: /projects/vancouver-building-age/
 ---
 
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/leaflet.fullscreen.css' rel='stylesheet' />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/Leaflet.fullscreen.min.js'></script>
+<script src="/js/geoPosition.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/leaflet.awesome-markers.css">
+<script src="/js/leaflet.awesome-markers.min.js"></script>
 
 <style>
     #map {
@@ -13,11 +19,29 @@ permalink: /projects/vancouver-building-age/
         width: 100%
     }
 
+    .gps_ring {
+        border: 3px solid #999;
+        -webkit-border-radius: 30px;
+        height: 18px;
+        width: 18px;
+        position: absolute;
+        left:20px;
+        top:214px;
+        -webkit-animation: pulsate 1s ease-out;
+        -webkit-animation-iteration-count: infinite;
+        opacity: 0.0;
+    }
+
+    @-webkit-keyframes pulsate {
+        0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+        50% {opacity: 1.0;}
+        100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+    }
+
     .my-legend {
       /*background-color: #f9f9f9;*/
       padding: 10px;
       opacity: 0.8;
-      width: 570px;
     }
 
     .my-legend .legend-title {
@@ -63,38 +87,42 @@ permalink: /projects/vancouver-building-age/
      }
 </style>
 
-<div class="wrap">
-    <header class="post-header">
-        <h1>Vancouver Building Age Visualization</h1>
-    </header>
+<div class="container">
+    <div class="col-lg-12">
+        <header class="post-header">
+            <h1>Vancouver Building Age Visualization</h1>
+        </header>
 
-    <article class="post-content">
-        <div class="my-legend">
-            <div class='legend-scale'>
-                <ul class='legend-labels'>
-                    <li><span style='background:#f6f477;'></span>1800s</li>
-                    <li><span style='background:#ffe00c;'></span>1900s</li>
-                    <li><span style='background:#fdbf34;'></span>1910s</li>
-                    <li><span style='background:#fd900c;'></span>1920s</li>
-                    <li><span style='background:#f16f2d;'></span>1930s</li>
-                    <li><span style='background:#d24b2d;'></span>1940s</li>
-                    <li><span style='background:#b54545;'></span>1950s</li>
-                    <li><span style='background:#835771;'></span>1960s</li>
-                    <li><span style='background:#576aaf;'></span>1970s</li>
-                    <li><span style='background:#3b8bf3;'></span>1980s</li>
-                    <li><span style='background:#4fabe5;'></span>1990s</li>
-                    <li><span style='background:#53cde0;'></span>2000s</li>
-                    <li><span style='background:#82ecd0;'></span>2010s</li>
-                    <li id='PARK'><span style='background:#fff;'></span>Parks</li>
-                </ul>
+        <article class="post-content">
+            <div class="my-legend">
+                <div class='legend-scale'>
+                    <ul class='legend-labels'>
+                        <li><span style='background:#f6f477;'></span>1800s</li>
+                        <li><span style='background:#ffe00c;'></span>1900s</li>
+                        <li><span style='background:#fdbf34;'></span>1910s</li>
+                        <li><span style='background:#fd900c;'></span>1920s</li>
+                        <li><span style='background:#f16f2d;'></span>1930s</li>
+                        <li><span style='background:#d24b2d;'></span>1940s</li>
+                        <li><span style='background:#b54545;'></span>1950s</li>
+                        <li><span style='background:#835771;'></span>1960s</li>
+                        <li><span style='background:#576aaf;'></span>1970s</li>
+                        <li><span style='background:#3b8bf3;'></span>1980s</li>
+                        <li><span style='background:#4fabe5;'></span>1990s</li>
+                        <li><span style='background:#53cde0;'></span>2000s</li>
+                        <li><span style='background:#82ecd0;'></span>2010s</li>
+                        <li id='PARK'><span style='background:#fff;'></span>Parks</li>
+                    </ul>
+                </div>
+
+                <div class='legend-source'>Data source: <a href="http://data.vancouver.ca/datacatalogue/">Open Data City of Vancouver</a></div>
             </div>
+        </article>
+    </div>
 
-            <div class='legend-source'>Data source: <a href="http://data.vancouver.ca/datacatalogue/">Open Data City of Vancouver</a></div>
-        </div>
-    </article>
+    <div class="col-lg-12">
+        <div id="map"></div>
+    </div>
 </div>
-
-<div id="map"></div>
 
 <script>
     var map = L.map('map').setView([49.254837, -123.1382151], 12);
@@ -103,4 +131,35 @@ permalink: /projects/vancouver-building-age/
         minZoom: 12,
         maxZoom: 18
     }).addTo(map);
+
+    L.control.fullscreen().addTo(map);
+
+    if (geoPosition.init()) {
+        geoPosition.getCurrentPosition(
+            // success
+            function (p) {
+                var icon, marker;
+
+                icon = L.AwesomeMarkers.icon({
+                    icon: 'home',
+                    markerColor: 'red'
+                });
+
+                marker = L.marker(
+                    [p.coords.latitude, p.coords.longitude],
+                    {icon: icon}
+                ).addTo(map);
+
+                marker.bindPopup("<b>Hey!</b><br>You are here.").openPopup();
+            },
+
+            // error
+            function (e) {},
+
+            // options
+            {
+                enableHighAccuracy: true
+            }
+        );
+    }
 </script>
