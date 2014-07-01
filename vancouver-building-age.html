@@ -18,6 +18,15 @@ image_preview: http://i.imgur.com/eCpWlIG.png
         margin-bottom: 20px;
     }
 
+    form h4 {
+        font-size: 13pt;
+    }
+
+    .subscribe_form {
+        position: relative;
+        top: 18px;
+    }
+
     .leaflet-container {
         background-color: #E6E6E6;
     }
@@ -72,35 +81,60 @@ image_preview: http://i.imgur.com/eCpWlIG.png
 </style>
 
 <div class="container">
-    <div class="col-lg-12">
-        <header class="post-header">
-            <h1>Vancouver Building Age Map</h1>
-        </header>
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-7">
+                <header class="post-header col-lg-12">
+                    <h1>Vancouver Building Age Map</h1>
+                </header>
 
-        <article class="post-content">
-            <div class="my-legend">
-                <div class='legend-scale'>
-                    <ul class='legend-labels'>
-                        <li><span style='background:#f6f477;'></span>1800s</li>
-                        <li><span style='background:#ffe00c;'></span>1900s</li>
-                        <li><span style='background:#fdbf34;'></span>1910s</li>
-                        <li><span style='background:#fd900c;'></span>1920s</li>
-                        <li><span style='background:#f16f2d;'></span>1930s</li>
-                        <li><span style='background:#d24b2d;'></span>1940s</li>
-                        <li><span style='background:#b54545;'></span>1950s</li>
-                        <li><span style='background:#835771;'></span>1960s</li>
-                        <li><span style='background:#576aaf;'></span>1970s</li>
-                        <li><span style='background:#3b8bf3;'></span>1980s</li>
-                        <li><span style='background:#4fabe5;'></span>1990s</li>
-                        <li><span style='background:#53cde0;'></span>2000s</li>
-                        <li><span style='background:#82ecd0;'></span>2010s</li>
-                        <li id='PARK'><span style='background:#fff;'></span>Parks</li>
-                    </ul>
-                </div>
+                <article class="post-content col-lg-12">
+                    <div class="my-legend">
+                        <div class='legend-scale'>
+                            <ul class='legend-labels'>
+                                <li><span style='background:#f6f477;'></span>1800s</li>
+                                <li><span style='background:#ffe00c;'></span>1900s</li>
+                                <li><span style='background:#fdbf34;'></span>1910s</li>
+                                <li><span style='background:#fd900c;'></span>1920s</li>
+                                <li><span style='background:#f16f2d;'></span>1930s</li>
+                                <li><span style='background:#d24b2d;'></span>1940s</li>
+                                <li><span style='background:#b54545;'></span>1950s</li>
+                                <li><span style='background:#835771;'></span>1960s</li>
+                                <li><span style='background:#576aaf;'></span>1970s</li>
+                                <li><span style='background:#3b8bf3;'></span>1980s</li>
+                                <li><span style='background:#4fabe5;'></span>1990s</li>
+                                <li><span style='background:#53cde0;'></span>2000s</li>
+                                <li><span style='background:#82ecd0;'></span>2010s</li>
+                                <li id='PARK'><span style='background:#fff;'></span>Parks</li>
+                            </ul>
+                        </div>
 
-                <div class='legend-source'>Data source: <a href="http://data.vancouver.ca/datacatalogue/">Open Data City of Vancouver</a></div>
+                        <div class='legend-source'>Data source: <a href="http://data.vancouver.ca/datacatalogue/">Open Data City of Vancouver</a></div>
+                    </div>
+                </article>
             </div>
-        </article>
+
+            <div class="col-lg-5 hidden-xs hidden-sm hidden-md subscribe_form">
+                <!-- Begin MailChimp Signup Form -->
+                <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+                <style type="text/css">
+                    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+                    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+                </style>
+                <div id="mc_embed_signup">
+                <form action="//loveyourmap.us8.list-manage.com/subscribe/post?u=1df8e5e5207516b23fbc2c506&amp;id=2cb89c7cb0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <h4>Subscribe to receive more great content like this</h4>
+
+                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_1df8e5e5207516b23fbc2c506_2cb89c7cb0" tabindex="-1" value=""></div>
+                    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </form>
+                </div>
+                <!--End mc_embed_signup-->
+            </div>
+        </div>
     </div>
 
     <div class="col-lg-12">
@@ -114,6 +148,29 @@ image_preview: http://i.imgur.com/eCpWlIG.png
         <p>Inspired by building age maps popping up for different cities (Portland, New York, etc.) I created the Vancouver Building Age map using publicly available data on the City of Vancouver website.</p>
         <p>In particular I used the parcel polygon shapefile (containing land lot outlines) and a property tax report table. Unfortunately, I could not use building footprints because the latest file containing such information dates back to 1999. I am currently in the process of adding the hover effect to display addresses and will soon post a more detailed description of the map creation process. Some lots do not actually have any information on when the buildings were constructed so I left them gray.</p>
         <p>Hope you have fun exploring the map! My personal favourite is the octopus-looking Shaughnessy lots between Oak st and Granville st.</p>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="">
+            <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+            <style type="text/css">
+                #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+                /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            <div id="mc_embed_signup">
+            <form action="//loveyourmap.us8.list-manage.com/subscribe/post?u=1df8e5e5207516b23fbc2c506&amp;id=2cb89c7cb0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <h4>Subscribe to receive more great content like this</h4>
+
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_1df8e5e5207516b23fbc2c506_2cb89c7cb0" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </form>
+            </div>
+            <!--End mc_embed_signup-->
+        </div>
     </div>
 </div>
 
