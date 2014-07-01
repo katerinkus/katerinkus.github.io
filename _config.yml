@@ -9,8 +9,8 @@ url: "http://www.aristova.me"
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
 page_list:
+    Portfolio: "/portfolio/"
     Projects: "/projects/"
     Photography: "/photography/"
-    #Portfolio: "/portfolio/"
     Blog: "/blog/"
     About: "/about/"
