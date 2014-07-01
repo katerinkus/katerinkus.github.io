@@ -11,5 +11,6 @@ permalink: /blog/:year/:month/:day/:title/
 page_list:
     Projects: "/projects/"
     Photography: "/photography/"
+    #Portfolio: "/portfolio/"
     Blog: "/blog/"
     About: "/about/"
