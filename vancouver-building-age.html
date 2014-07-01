@@ -141,6 +141,8 @@ image_preview: http://i.imgur.com/eCpWlIG.png
         <p>
             <strong>Note:</strong>
             If the map doesn't show up, <a href='http://i.imgur.com/uqOsIXI.jpg'>click to see a screenshot</a>.
+
+            <button id="show_location" class="btn btn-default" style="float: right; position: relative; top: -5px"><span class="glyphicon glyphicon-home"></span> Show my location on the map</button>
         </p>
 
         <div id="map"></div>
@@ -178,6 +180,8 @@ image_preview: http://i.imgur.com/eCpWlIG.png
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/Leaflet.fullscreen.min.js'></script>
 <script src="/js/geoPosition.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/leaflet.awesome-markers.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 
 <script>
     var map = L.map('map').setView([49.254837, -123.1382151], 12);
@@ -200,38 +204,48 @@ image_preview: http://i.imgur.com/eCpWlIG.png
         ga('send', 'event', 'map_interaction', 'drag');
     });
 
-    if (geoPosition.init()) {
-        geoPosition.getCurrentPosition(
-            // success
-            function (p) {
-                var icon, marker;
+    $(function () {
+        $("#show_location").click(function() {
+            if (!geoPosition.init()) {
+                ga('send', 'event', 'geolocation', 'no support');
 
-                icon = L.AwesomeMarkers.icon({
-                    icon: 'home',
-                    markerColor: 'red'
-                });
+                alert("Geolocation service not supported by your browser.");
 
-                marker = L.marker(
-                    [p.coords.latitude, p.coords.longitude],
-                    {icon: icon}
-                ).addTo(map);
-
-                marker.bindPopup("<b>Hey!</b><br>You are here.").openPopup();
-
-                ga('send', 'event', 'geolocation', 'success', 'js', p.coords.accuracy);
-            },
-
-            // error
-            function (e) {
-                ga('send', 'event', 'geolocation', 'failure');
-            },
-
-            // options
-            {
-                enableHighAccuracy: true
+                return;
             }
-        );
-    }
+
+            geoPosition.getCurrentPosition(
+                // success
+                function (p) {
+                    var icon, marker;
+
+                    icon = L.AwesomeMarkers.icon({
+                        icon: 'home',
+                        markerColor: 'red'
+                    });
+
+                    marker = L.marker(
+                        [p.coords.latitude, p.coords.longitude],
+                        {icon: icon}
+                    ).addTo(map);
+
+                    marker.bindPopup("<b>Hey!</b><br>You are here.").openPopup();
+
+                    ga('send', 'event', 'geolocation', 'success', 'js', p.coords.accuracy);
+                },
+
+                // error
+                function (e) {
+                    ga('send', 'event', 'geolocation', 'failure');
+                },
+
+                // options
+                {
+                    enableHighAccuracy: true
+                }
+            );
+        });
+    });
 </script>
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=grigory"></script>
