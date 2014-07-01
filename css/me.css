@@ -1,3 +1,9 @@
 .post {
     margin-bottom: 20px;
 }
+
+.work_row img {
+    -webkit-box-shadow: 1px 1px 14px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    1px 1px 14px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         1px 1px 14px 0px rgba(50, 50, 50, 0.75);
+}
