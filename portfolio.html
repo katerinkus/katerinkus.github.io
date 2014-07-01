@@ -5,31 +5,174 @@ permalink: /portfolio/
 ---
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="/css/lightbox.css" rel="stylesheet">
 
 <style>
 	.page-content {
-		background-color: #e6e6e6;
+		background-color: #f2f2f2;
+		color: #555;
+	}
+
+	.work_row {
+		margin-top: 15px;
+	}
+
+	.work_row img {
+		-webkit-box-shadow: 1px 1px 14px 0px rgba(50, 50, 50, 0.75);
+		-moz-box-shadow:    1px 1px 14px 0px rgba(50, 50, 50, 0.75);
+		box-shadow:         1px 1px 14px 0px rgba(50, 50, 50, 0.75);
+	}
+
+	.meta {
+		font-family: 'Ruda', sans-serif;
+		margin-top: 7px;
+	}
+
+	.meta strong {
+		font-weight: 500;
+		font-size: 13pt;
+	}
+
+	.meta p {
+		margin-top: 6px;
+	}
+
+	hr {
+		border-top: 1px solid #ccc;
 	}
 </style>
 
 <div class="container">
-	<div class="col-lg-12">
-		<h3>Design</h3>
+	<div class="col-lg-5 col-lg-offset-3">
+		<h3>Design, illustration & other work</h3>
+		<hr>
+	</div>
 
-		<div class="row">
-			<div class="col-lg-3">
-				<img class="img-responsive" src="/portfolio_images/Report.png">
+	<div class="col-lg-12">
+		<div class="row work_row">
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/illustration/candy.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/illustration/candy_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Chocolate Chef</strong>
+					<p>Magazine illustration</p>
+				</div>
 			</div>
 
-			<div class="col-lg-3">
-				<img class="img-responsive" src="/portfolio_images/Report.png">
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/illustration/forest.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/illustration/forest_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Musical Forest</strong>
+					<p>Magazine illustration</p>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/illustration/gym.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/illustration/gym_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Decisions</strong>
+					<p>Magazine illustration</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row work_row">
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/illustration/girls.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/illustration/girls_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Girls</strong>
+					<p>Magazine illustration</p>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/other/vanmap.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/other/vanmap_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Vancouver Building Age Map</strong>
+					<p><a href="/projects/vancouver-building-age-map/">View interactive version</a></p>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/design/ellumentes.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/design/ellumentes_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Ellumentes</strong>
+					<p>Website design, logo</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row work_row">
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/design/report.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/design/report_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Client report</strong>
+					<p>Business report layout, styling</p>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/design/teagraph.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/design/teagraph_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Teagraph</strong>
+					<p>Website design, logo</p>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="image">
+					<a href="/portfolio_images/design/gregspulse.png" data-lightbox="portfolio">
+						<img class="img-responsive" src="/portfolio_images/design/gregspulse_thumb.png">
+					</a>
+				</div>
+
+				<div class="meta">
+					<strong>Gregspulse</strong>
+					<p>Website design, logo</p>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="col-lg-12">
-		<h3>Illustration</h3>
-
-
-	</div>
 </div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/js/lightbox.min.js"></script>
