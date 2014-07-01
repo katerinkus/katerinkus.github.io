@@ -206,6 +206,8 @@ image_preview: http://i.imgur.com/eCpWlIG.png
 
     $(function () {
         $("#show_location").click(function() {
+            ga('send', 'event', 'geolocation', 'locate me');
+            
             if (!geoPosition.init()) {
                 ga('send', 'event', 'geolocation', 'no support');
 
