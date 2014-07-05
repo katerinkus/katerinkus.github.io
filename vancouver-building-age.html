@@ -123,7 +123,7 @@ image_preview: http://i.imgur.com/eCpWlIG.png
                        We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
                 </style>
                 <div id="mc_embed_signup">
-                <form action="//loveyourmap.us8.list-manage.com/subscribe/post?u=1df8e5e5207516b23fbc2c506&amp;id=2cb89c7cb0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <form action="//loveyourmap.us8.list-manage.com/subscribe/post?u=1df8e5e5207516b23fbc2c506&amp;id=2cb89c7cb0" method="post" id="mc-embedded-subscribe-form-upper" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                     <h4>Subscribe to receive more great content like this</h4>
 
                     <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
@@ -162,7 +162,7 @@ image_preview: http://i.imgur.com/eCpWlIG.png
                    We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
             </style>
             <div id="mc_embed_signup">
-            <form action="//loveyourmap.us8.list-manage.com/subscribe/post?u=1df8e5e5207516b23fbc2c506&amp;id=2cb89c7cb0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <form action="//loveyourmap.us8.list-manage.com/subscribe/post?u=1df8e5e5207516b23fbc2c506&amp;id=2cb89c7cb0" method="post" id="mc-embedded-subscribe-form-lower" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                 <h4>Subscribe to receive more great content like this</h4>
 
                 <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
@@ -205,10 +205,14 @@ image_preview: http://i.imgur.com/eCpWlIG.png
     });
 
     $(function () {
-        $("#mc-embedded-subscribe-form").submit(function () {
-			ga('send', 'event', 'subscribe', 'submit');
+        $("#mc-embedded-subscribe-form-lower").submit(function () {
+			ga('send', 'event', 'subscribe', 'submit', 'lower');
 		});
-        
+
+        $("#mc-embedded-subscribe-form-upper").submit(function () {
+            ga('send', 'event', 'subscribe', 'submit', 'upper');
+        });
+
         $("#show_location").click(function() {
             ga('send', 'event', 'geolocation', 'locate me');
 
