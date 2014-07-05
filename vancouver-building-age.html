@@ -205,9 +205,13 @@ image_preview: http://i.imgur.com/eCpWlIG.png
     });
 
     $(function () {
+        $("#mc-embedded-subscribe-form").submit(function () {
+			ga('send', 'event', 'subscribe', 'submit');
+		});
+        
         $("#show_location").click(function() {
             ga('send', 'event', 'geolocation', 'locate me');
-            
+
             if (!geoPosition.init()) {
                 ga('send', 'event', 'geolocation', 'no support');
 
