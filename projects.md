@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Projects - Ekaterina Aristova
+title: Projects
 permalink: /projects/
 ---
 
