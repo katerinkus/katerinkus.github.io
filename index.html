@@ -2,16 +2,41 @@
 layout: default
 ---
 
-<div class="home">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-  <h1>Hello!</h1>
+<style>
+    h2 {
+        font-weight: 300;
+        margin-top: 0;
+    }
+</style>
 
-  <p>This website is a work in progress. In the meantime, check out my <a href="/portfolio/">Portfolio</a>, <a href="/projects/">Projects</a> and <a href="/photography/">Photography</a>.</p>
+<div class="col-lg-12">
+    <div class="col-lg-12 row">
+        <h2>Latest portfolio items:</h2>
 
-  <div style="margin-top: 20px;">
-      <a href="/projects/vancouver-building-age-map/">
-          <h2>Most recent project: Vancouver Building Age map</h2>
-          <img src="http://i.imgur.com/Z8JpGgA.png" title="Vancouver Building Age map">
-      </a>
-  </div>
+        <div class="row">
+        {% for item in site.data.portfolio limit:6 %}
+            <div class="col-lg-4 work_row">
+                <div class="image">
+                    <a href="/portfolio/">
+                        <img class="img-responsive" src="/portfolio_images/{{ item.category }}/{{ item.image }}_thumb.png" />
+                    </a>
+                </div>
+
+                <div class="meta">
+                    <strong>{{ item.name }}</strong>
+                    <p>{{ item.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-lg-12 row" style="margin-top: 30px;">
+        <a href="/projects/vancouver-building-age-map/">
+            <h2>Most recent project: Vancouver Building Age map</h2>
+            <img src="http://i.imgur.com/Z8JpGgA.png" title="Vancouver Building Age map" />
+        </a>
+    </div>
 </div>
