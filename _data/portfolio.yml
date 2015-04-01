@@ -1,3 +1,13 @@
+-   image: Password
+    category: illustration
+    name: Password illustration
+    description: Illustrator
+    
+-   image: voting
+    category: illustration
+    name: Voting booth
+    description: Illustrator
+    
 -   image: senate
     category: illustration
     name: Senate Voting illustration
