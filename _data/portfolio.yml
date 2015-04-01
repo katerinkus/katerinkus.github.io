@@ -1,3 +1,18 @@
+-   image: senate
+    category: illustration
+    name: Senate Voting illustration
+    description: Illustrator
+    
+-   image: handout2
+    category: design
+    name: Photowalks handout
+    description: inDesign
+	
+-   image: card
+    category: design
+    name: Digital Business Card
+    description: Vancouver Photowalks business card
+	
 -   image: airforce_cadets
     category: illustration
     name: Airforce Cadets
