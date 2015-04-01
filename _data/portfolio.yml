@@ -18,6 +18,11 @@
     name: Ellumentes
     description: "Website design, logo"
 
+-   image: infographic
+    category: design
+    name: Real Estate Infographic
+    description: Done in Adobe Illustrator for a local marketing firm
+
 -   image: Password
     category: illustration
     name: Password illustration
