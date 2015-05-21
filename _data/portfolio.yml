@@ -1,3 +1,43 @@
+-   image: handout2
+    category: design
+    name: Photowalks handout
+    description: inDesign
+
+-   image: card
+    category: design
+    name: Digital Business Card
+    description: Vancouver Photowalks business card
+
+-   image: report
+    category: design
+    name: Client report
+    description: "Business report layout, styling"
+
+-   image: ellumentes
+    category: design
+    name: Ellumentes
+    description: "Website design, logo"
+
+-   image: infographic
+    category: design
+    name: Real Estate Infographic
+    description: Done in Adobe Illustrator for a local marketing firm
+
+-   image: Password
+    category: illustration
+    name: Password illustration
+    description: Illustrator
+
+-   image: voting
+    category: illustration
+    name: Voting booth
+    description: Illustrator
+
+-   image: senate
+    category: illustration
+    name: Senate Voting illustration
+    description: Illustrator
+
 -   image: airforce_cadets
     category: illustration
     name: Airforce Cadets
@@ -23,20 +63,10 @@
     name: Chocolate Chef
     description: Magazine illustration
 
--   image: ellumentes
-    category: design
-    name: Ellumentes
-    description: "Website design, logo"
-
 -   image: forest
     category: illustration
     name: Musical Forest
     description: Magazine illustration
-
--   image: report
-    category: design
-    name: Client report
-    description: "Business report layout, styling"
 
 -   image: girls
     category: illustration
