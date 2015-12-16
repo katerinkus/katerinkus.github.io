@@ -1,0 +1,13 @@
+---
+layout: gis
+title: Real Estate
+permalink: /real-estate/
+---
+<style>
+</style>
+
+<div class="photos">
+  {% for item in site.data.real-estate %}
+    <img src="/portfolio_images/real_estate/interior{{ item.image }}.jpg">
+  {% endfor %}
+</div>
