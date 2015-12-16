@@ -4,12 +4,6 @@
 -   image: 2
     description: "Three bracket HDR"
 
--   image: 3
-    description: "No flash or HDR"
-
--   image: 4
-    description: "No flash or HDR"
-
 -   image: 5
     description: "Shot with external flash"
 
@@ -19,6 +13,12 @@
 -   image: 7
     description: "Shot with external flash"
 
+-   image: 3
+    description: "No flash or HDR"
+
+-   image: 4
+    description: "No flash or HDR"
+
+-   image: 10
 -   image: 8
 -   image: 9
--   image: 10
