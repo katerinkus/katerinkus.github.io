@@ -4,12 +4,31 @@ title: Real Estate
 permalink: /real-estate/
 ---
 <style>
+  .photos {
+    display: flex;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .photos .item {
+    margin-bottom: 50px;
+  }
+
+  .photos h1 {
+    font-size: 20pt;
+  }
 </style>
 
-<h1>Real Estate Samples</h1>
-
 <div class="photos">
+  <h1>Real Estate Samples</h1>
+
   {% for item in site.data.real-estate %}
-    <img src="/portfolio_images/real_estate/interior{{ item.image }}.jpg">
+    <div class="item">
+      <img src="/portfolio_images/real_estate/interior{{ item.image }}.jpg">
+      {% if item.description %}
+        <p>{{item.description}}</p>
+      {% endif %}
+    </div>
   {% endfor %}
 </div>
