@@ -672,8 +672,6 @@ function drawPlanets(data) {
     var cats = [];
     var totals = {};
 
-    console.log(data);
-
     for (n in data) {
         totals[n] = [];
         for (year in data[n]) {
@@ -695,7 +693,7 @@ function drawPlanets(data) {
             type: "column"
         },
 
-        colors: ["#bc5c83", "#ea98bd"],
+        colors: ["#BB6FD4", "#6D74E3", "#EDAE3E", "#6BCAB6"],
 
         title: {
             text: "Planet comparison",
@@ -814,7 +812,7 @@ function drawCategoryComparisons(data) {
                 "comparison-" + c + "-" + cats[c][cT],
                 c + ": " + cats[c][cT],
                 years,
-                cT + " (gha)",
+                "Per capita gha",
                 series
             );
         }
