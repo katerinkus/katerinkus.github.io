@@ -1,1 +1,400 @@
-test
+<!DOCTYPE html5>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+    <style>
+        @media print {
+            .no-print,
+            .no-print * {
+                display: none !important;
+            }
+        }
+
+        body {
+            background-color: #efefef;
+            font-family: Asap, Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            color: #4bbd98;
+        }
+
+        body a, body a:visited {
+            font-weight: bold;
+            color: #4bbd98;
+        }
+
+        .logos {
+            background-color: #fff;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border: 10px white solid;
+        }
+
+        .logos img {
+            max-width: 150px;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 10px white solid;
+            background-color: white;
+        }
+
+        .highcharts-title {
+            font-family: Asap, Helvetica, Arial, sans-serif;
+            font-size: 30px !important;
+            text-align: left;
+        }
+
+        /* graphs */
+
+        .sunburst {
+            display: flex;
+            justify-content: space-around;
+            flex-grow: 4;
+        }
+
+        .household-planet {
+            flex-grow: 0.5;
+            text-align: center;
+            background-color: #f4f4f4; /*Default bg, similar to the background's base color*/
+        }
+
+        .planet-first {
+            background-image: url("steps.svg");
+            background-position: right; /*Positioning*/
+            background-position-y: 90%;
+            background-repeat: no-repeat; /*Prevent showing multiple background images*/
+        }
+        .planet-previous {
+            background-image: url("small-steps.svg");
+            background-position: center; /*Positioning*/
+            background-position-y: 85%;
+            background-repeat: no-repeat; /*Prevent showing multiple background images*/
+        }
+
+        .household-planet .highcharts-title {
+            display: inline;
+        }
+
+        .planet {
+            background-image: url("planet-crop.svg");
+            background-repeat: repeat-y;
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .planet-count {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #4bbd98;
+            margin-top: 10px;
+        }
+
+        .chart {
+            border-top: 1.5px lightgray dotted;
+            padding-top: 30px;
+            padding-bottom: 15px;
+            width: 100%;
+        }
+
+        .consumables {
+            border-bottom: 1.5px lightgray dotted;
+        }
+
+        .overview {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        .title-block {
+            text-align: center;
+        }
+
+        .overview div {
+            width: 50%;
+        }
+
+        .highcharts-plot-background {
+            fill: #f4f4f4;
+        }
+
+        #transportation {
+            width: 65%;
+        }
+
+        #building {
+            width: 65%;
+        }
+
+        #food {
+            width: 80%;
+        }
+
+        #consumables {
+            width: 65%;
+        }
+
+        .fact {
+            width: 35%;
+            font-size: 20px;
+            border: 1px dashed;
+            border-radius: 10px;
+            margin: 0 0 10% 2%;
+        }
+
+        #tranp-text {
+            padding: 2%;
+            color: #6ebace;
+            border-color: #6ebace;
+            background-image: url("airplane.svg");
+            background-position: center; /*Positioning*/
+            background-position-y: 85%;
+            background-repeat: no-repeat; /*Prevent showing multiple background images*/
+        }
+
+        #food-text {
+            width: 20%;
+            padding: 2%;
+            color: #bc5c83;
+            border-color: #bc5c83;
+            background-image: url("beans.svg");
+            background-position: center; /*Positioning*/
+            background-position-y: 85%;
+            background-repeat: no-repeat; /*Prevent showing multiple background images*/
+        }
+
+        #build-text {
+            padding: 2%;
+            margin-bottom: 2%;
+            color: #95b124;
+            border-color: #95b124;
+            background-image: url("building.svg");
+            background-position: center; /*Positioning*/
+            background-position-y: 95%;
+            background-repeat: no-repeat; /*Prevent showing multiple background images*/
+        }
+
+        #consume-text {
+            padding: 2%;
+            margin-bottom: 2%;
+            color: #f89c06;
+            border-color: #f89c06;
+            background-image: url("consumables.svg");
+            background-position: center; /*Positioning*/
+            background-position-y: 95%;
+            background-repeat: no-repeat; /*Prevent showing multiple background images*/
+        }
+
+        .pcategory {
+            display: flex;
+            min-height: 300px;
+        }
+
+        .fcategory {
+            display: flex;
+            min-height: 450px;
+        }
+
+    </style>
+</head>
+
+<script src="highcharts/code/highcharts.js"></script>
+<script src="highcharts/code/modules/exporting.js"></script>
+<script src="highcharts/code/modules/sunburst.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+<body>
+    <div class="wrapper">
+        <div class="title-block">
+            <img src="GreenBloc-Logo-WEB.png">
+        </div>
+
+        <div class="people" id="people" style="display: none">
+        </div>
+
+        <div class="compareAll" id="compareAll">
+            <div class="chart">
+                <div id="planets"></div>
+            </div>
+        </div>
+
+        <div class="graphs" id="graphs" style="display: none">
+            <a class="no-print" href="index.html">Show all</a>
+
+            <div class="sunburst chart">
+                <div id="sunburst"></div>
+                <div class="household-planet planet-previous">
+                    <div class="highcharts-title">2017:</div>
+                    <div class="planet" id="household-planet-2017"></div>
+                    <div class="planet-count" id="planet-count-2017"></div>
+                </div>
+                <div class="household-planet planet-first">
+                    <div class="highcharts-title">2018:</div>
+                    <div class="planet" id="household-planet-2018"></div>
+                    <div class="planet-count" id="planet-count-2018"></div>
+                </div>
+            </div>
+
+            <div class="overview chart">
+                <div id="overview2017"></div>
+                <div id="overview2018"></div>
+            </div>
+
+            <div class="comparison chart">
+                <div id="comparison"></div>
+            </div>
+
+            <div class="transportation chart pcategory">
+                <div id="tranp-text" class="fact">Quick fact: Reducing your air travel will have the biggest impact on your overall footprint.</div>
+                <div id="transportation"></div>
+            </div>
+
+            <div class="building chart pcategory">
+                <div id="building"></div>
+                <div id="build-text" class="fact">Quick fact: Improving your home’s insulation can have a great impact on reducing your energy demands, and your footprint. Enhance seals, caulking, gaskets, and install thermal shades.</div>
+            </div>
+
+            <div class="food chart fcategory">
+                <div id="food-text" class="fact">Quick cact: Reducing your meat and dairy intake is one of the easiest ways to reduce ecological footprint overall.
+                </div>
+                <div id="food"></div>
+            </div>
+
+            <div class="consumables chart pcategory">
+                <div id="consumables"></div>
+                <div id="consume-text" class="fact">Quick fact: Recycling is not the biggest driver in your footprint, reduction is the key. This means less packaging (plastic, glass, aluminum), going paperless (receipts, mail, printing), and reducing textile waste.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="logos">
+        <img src="eg.jpg">
+        <img src="sfu.png">
+        <img src="sitka.png">
+        <img src="wcs.jpg">
+        <div style="margin-top:10px;">
+            Data visualization by: <a href="http://www.aristova.me/">Ekaterina Aristova</a> and <a href="http://www.grigory.ca/">Grigory Kruglov</a>
+        <p>
+            Icons by (Creative Commons license:
+            Earth: <a href="https://thenounproject.com/nicografico">Nicolas Ramallo</a>
+            Airplane: <a href="https://thenounproject.com/sagitnz">sagit milshtein</a>
+            Beans:  <a href="https://thenounproject.com/Doug%20Cavendish">Doug Cavendish</a>
+            Drink cup: <a href="https://thenounproject.com/naripuru/">parkjisun</a>
+            House: <a href="https://thenounproject.com/symbolon/">symbolon</a>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function k(name) {
+        return document.createElement(name);
+    }
+
+    function showHouseholds(neighbourhoods) {
+        var people = document.getElementById("people");
+        people.innerHTML = "";
+        people.style.display = "block";
+        document.getElementById("graphs").style.display = "none";
+
+        var ca = k("a");
+        ca.href = "#compare-all";
+        ca.innerHTML = "Compare neighbourhoods";
+
+        people.appendChild(ca);
+
+        for (neighbourhood in neighbourhoods) {
+            var div = k("div");
+            var strong = k("strong");
+            var na = k("a");
+            na.innerHTML = neighbourhood;
+            na.href = "#" + neighbourhood + ",";
+            strong.appendChild(na);
+            var ul = k("ul");
+
+            for (household in neighbourhoods[neighbourhood]) {
+                var li = k("li");
+                var a = k("a");
+                a.innerHTML = household;
+                a.href = "#" + neighbourhood + "," + household;
+
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+
+            div.appendChild(strong);
+            div.appendChild(ul);
+            people.appendChild(div);
+        }
+    }
+
+    function showCompareAll() {
+        document.getElementById("people").style.display = "none";
+        document.getElementById("graphs").style.display = "none";
+        document.getElementById("compareAll").style.display = "block";
+
+        drawCompareAll(neighbourhoods);
+    }
+
+    function showHousehold(neighbourhood, household) {
+        neighbourhood = neighbourhood.replace("%20", " ");
+        household = household.replace("%20", " ");
+
+        document.getElementById("people").style.display = "none";
+        document.getElementById("compareAll").style.display = "none";
+        document.getElementById("graphs").style.display = "block";
+
+        var data = neighbourhoods[neighbourhood][household];
+        var neighData = neighbourhoods[neighbourhood];
+
+        drawAllGraphsHousehold(data, neighData, neighbourhoods);
+        drawPlanet(data);
+    }
+
+    function showNeighbourhood(neighbourhood) {
+        neighbourhood = neighbourhood.replace("%20", " ");
+
+        document.getElementById("people").style.display = "none";
+        document.getElementById("compareAll").style.display = "none";
+        document.getElementById("graphs").style.display = "block";
+
+        data = aggregateHouseholdsByYear(neighbourhoods[neighbourhood]);
+
+        drawAllGraphsNeighbourhood(neighbourhood, data, neighbourhoods);
+        drawPlanet(data);
+    }
+
+    function checkWhatToShow() {
+        if (document.location.hash === "") {
+            showHouseholds(neighbourhoods);
+        } else if (document.location.hash === "#compare-all") {
+            showCompareAll();
+        } else {
+            var n = document.location.hash.split("#")[1].split(",")[0];
+            var h = document.location.hash.split("#")[1].split(",")[1];
+            if (h !== "") {
+                showHousehold(n, h);
+            } else {
+                showNeighbourhood(n);
+            }
+        }
+    }
+
+    window.onhashchange = checkWhatToShow;
+    checkWhatToShow();
+</script>
+
+</html>
