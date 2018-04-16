@@ -304,7 +304,7 @@ function drawTransportation(household) {
         yAxis: {
             min: 0,
             title: {
-                text: "Total energy consumption"
+                text: "(gha)"
             }
         },
         legend: {
@@ -365,7 +365,7 @@ function drawBuilding(household) {
         yAxis: {
             min: 0,
             title: {
-                text: "Total energy consumption"
+                text: "(gha)"
             }
         },
         legend: {
@@ -422,7 +422,7 @@ function drawFood(household) {
         yAxis: {
             min: 0,
             title: {
-                text: "Total energy consumption"
+                text: "(gha)"
             }
         },
         legend: {
@@ -484,7 +484,7 @@ function drawConsumables(household) {
         yAxis: {
             min: 0,
             title: {
-                text: "Total energy consumption"
+                text: "(gha)"
             }
         },
         legend: {
@@ -731,7 +731,7 @@ function drawGenericBarChart(divId, title, categories, yTitle, data) {
             type: "column"
         },
 
-        colors: ["#bc5c83", "#ea98bd"],
+        colors: ["#BB6FD4", "#6D74E3", "#EDAE3E", "#6BCAB6"],
 
         title: {
             text: title,
