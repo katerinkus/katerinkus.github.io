@@ -1,3 +1,7 @@
+function fixedFloat(value, sigs) {
+    return parseFloat(value.toFixed(sigs));
+}
+
 function aggregateNeighbourhoodsByYear(neighbourhoods) {
     var data = {};
 
@@ -20,7 +24,6 @@ function aggregateNeighbourhoodsByYear(neighbourhoods) {
         for (year in data[n]) {
             for (c in data[n][year]) {
                 for (cT in data[n][year][c]) {
-                    console.log(data[n][year][c][cT], household_count);
                     data[n][year][c][cT] = data[n][year][c][cT] / household_count;
                 }
             }
@@ -268,7 +271,7 @@ function drawTransportation(household) {
         cats.push(year);
 
         for (param in household[year]["transportation"]) {
-            var value = household[year]["transportation"][param];
+            var value = fixedFloat(household[year]["transportation"][param], 3);
 
             if (param in data) {
                 data[param].push(value);
@@ -329,7 +332,7 @@ function drawBuilding(household) {
         cats.push(year);
 
         for (param in household[year]["building"]) {
-            var value = household[year]["building"][param];
+            var value = fixedFloat(household[year]["building"][param], 3)
 
             if (param in data) {
                 data[param].push(value);
@@ -389,7 +392,7 @@ function drawFood(household) {
     for (year in household) {
         data[year] = [];
         for (param in household[year]["food"]) {
-            var value = household[year]["food"][param];
+            var value = fixedFloat(household[year]["food"][param], 3);
 
             cats.push(param);
             data[year].push(value);
@@ -448,7 +451,7 @@ function drawConsumables(household) {
         cats.push(year);
 
         for (param in household[year]["consumables"]) {
-            var value = household[year]["consumables"][param];
+            var value = fixedFloat(household[year]["consumables"][param], 3);
 
             if (param in data) {
                 data[param].push(value);
@@ -527,7 +530,7 @@ function drawSunburst(household) {
                 id: catCount + 1 + "." + catTypeCount,
                 parent: "1." + catCount,
                 name: catType,
-                value: household[year][cat][catType]
+                value: parseFloat((household[year][cat][catType]).toFixed(3))
             });
             catTypeCount++;
         }
@@ -676,7 +679,7 @@ function drawPlanets(data) {
         totals[n] = [];
         for (year in data[n]) {
             cats.push(year);
-            totals[n].push(data[n][year]["totals"]["Planets"]);
+            totals[n].push(fixedFloat(data[n][year]["totals"]["Planets"], 3));
         }
     }
 
@@ -710,9 +713,6 @@ function drawPlanets(data) {
                 text: "Avg planets required"
             }
         },
-        legend: {
-            reversed: true
-        },
         plotOptions: {
             column: {
                 pointPadding: 0.2,
@@ -745,9 +745,6 @@ function drawGenericBarChart(divId, title, categories, yTitle, data) {
             title: {
                 text: yTitle
             }
-        },
-        legend: {
-            reversed: true
         },
         plotOptions: {
             column: {
@@ -797,7 +794,7 @@ function drawCategoryComparisons(data) {
                 for (y in data[n]) {
                     years.push(y);
                     totals[n] = totals[n] || [];
-                    totals[n].push(data[n][y][c][cats[c][cT]]);
+                    totals[n].push(fixedFloat(data[n][y][c][cats[c][cT]], 3));
                 }
             }
 
@@ -835,7 +832,6 @@ function drawRegularGraphs(data) {
 }
 
 function drawAllGraphsNeighbourhood(name, neighbourhood, allHhs) {
-    console.log(neighbourhood);
     drawRegularGraphs(neighbourhood);
     drawComparisonNeighbourhood(name, neighbourhood, allHhs);
 }

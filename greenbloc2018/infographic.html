@@ -38,6 +38,11 @@
             max-width: 150px;
         }
 
+        .logos p, .logos p a, .logos p a:visited {
+            color: #9e9e9e;
+            font-size: 8pt;
+        }
+
         .wrapper {
             max-width: 1000px;
             margin-left: auto;
@@ -153,49 +158,41 @@
             border: 1px dashed;
             border-radius: 10px;
             margin: 0 0 10% 2%;
+            padding: 2%;
+            padding-top: 10px;
+            background-position: center; /*Positioning*/
+            background-repeat: no-repeat; /*Prevent showing multiple background images*/
         }
 
         #tranp-text {
-            padding: 2%;
             color: #6ebace;
             border-color: #6ebace;
             background-image: url("airplane.svg");
-            background-position: center; /*Positioning*/
             background-position-y: 85%;
-            background-repeat: no-repeat; /*Prevent showing multiple background images*/
         }
 
         #food-text {
             width: 20%;
-            padding: 2%;
             color: #bc5c83;
             border-color: #bc5c83;
             background-image: url("beans.svg");
-            background-position: center; /*Positioning*/
             background-position-y: 85%;
-            background-repeat: no-repeat; /*Prevent showing multiple background images*/
         }
 
         #build-text {
-            padding: 2%;
             margin-bottom: 2%;
             color: #95b124;
             border-color: #95b124;
             background-image: url("building.svg");
-            background-position: center; /*Positioning*/
             background-position-y: 95%;
-            background-repeat: no-repeat; /*Prevent showing multiple background images*/
         }
 
         #consume-text {
-            padding: 2%;
             margin-bottom: 2%;
             color: #f89c06;
             border-color: #f89c06;
             background-image: url("consumables.svg");
-            background-position: center; /*Positioning*/
             background-position-y: 95%;
-            background-repeat: no-repeat; /*Prevent showing multiple background images*/
         }
 
         .pcategory {
@@ -221,6 +218,7 @@
     <div class="wrapper">
         <div class="title-block">
             <img src="GreenBloc-Logo-WEB.png">
+            <h1 id="page-title"></h1>
         </div>
 
         <div class="people" id="people" style="display: none">
@@ -233,8 +231,6 @@
         </div>
 
         <div class="graphs" id="graphs" style="display: none">
-            <a class="no-print" href="index.html">Show all</a>
-
             <div class="sunburst chart">
                 <div id="sunburst"></div>
                 <div class="household-planet planet-previous">
@@ -265,11 +261,11 @@
 
             <div class="building chart pcategory">
                 <div id="building"></div>
-                <div id="build-text" class="fact">Quick fact: Improving your home’s insulation can have a great impact on reducing your energy demands, and your footprint. Enhance seals, caulking, gaskets, and install thermal shades.</div>
+                <div id="build-text" class="fact">Quick fact: Improving your home's insulation can have a great impact on reducing your energy demands, and your footprint. Enhance seals, caulking, gaskets, and install thermal shades.</div>
             </div>
 
             <div class="food chart fcategory">
-                <div id="food-text" class="fact">Quick cact: Reducing your meat and dairy intake is one of the easiest ways to reduce ecological footprint overall.
+                <div id="food-text" class="fact">Quick fact: Reducing your meat and dairy intake is one of the easiest ways to reduce ecological footprint overall.
                 </div>
                 <div id="food"></div>
             </div>
@@ -286,10 +282,11 @@
         <img src="sfu.png">
         <img src="sitka.png">
         <img src="wcs.jpg">
+        <img src="alogo.png">
         <div style="margin-top:10px;">
             Data visualization by: <a href="http://www.aristova.me/">Ekaterina Aristova</a> and <a href="http://www.grigory.ca/">Grigory Kruglov</a>
         <p>
-            Icons by (Creative Commons license:
+            Icons by (Creative Commons license):
             Earth: <a href="https://thenounproject.com/nicografico">Nicolas Ramallo</a>
             Airplane: <a href="https://thenounproject.com/sagitnz">sagit milshtein</a>
             Beans:  <a href="https://thenounproject.com/Doug%20Cavendish">Doug Cavendish</a>
@@ -329,7 +326,7 @@
                 var li = k("li");
                 var a = k("a");
                 a.innerHTML = household;
-                a.href = "#" + neighbourhood + "," + household;
+                a.href = "#" + btoa(neighbourhood + "," + household);
 
                 li.appendChild(a);
                 ul.appendChild(li);
@@ -346,12 +343,16 @@
         document.getElementById("graphs").style.display = "none";
         document.getElementById("compareAll").style.display = "block";
 
+        document.getElementById("page-title").innerHTML = "Detailed comparison of all neighbourhoods";
+
         drawCompareAll(neighbourhoods);
     }
 
     function showHousehold(neighbourhood, household) {
         neighbourhood = neighbourhood.replace("%20", " ");
         household = household.replace("%20", " ");
+
+        document.getElementById("page-title").innerHTML = "Household in " + neighbourhood;
 
         document.getElementById("people").style.display = "none";
         document.getElementById("compareAll").style.display = "none";
@@ -366,6 +367,8 @@
 
     function showNeighbourhood(neighbourhood) {
         neighbourhood = neighbourhood.replace("%20", " ");
+
+        document.getElementById("page-title").innerHTML = neighbourhood + " neighbourhood";
 
         document.getElementById("people").style.display = "none";
         document.getElementById("compareAll").style.display = "none";
@@ -383,8 +386,9 @@
         } else if (document.location.hash === "#compare-all") {
             showCompareAll();
         } else {
-            var n = document.location.hash.split("#")[1].split(",")[0];
-            var h = document.location.hash.split("#")[1].split(",")[1];
+            var hash = atob(document.location.hash.substr(1));
+            var n = hash.split(",")[0];
+            var h = hash.split(",")[1];
             if (h !== "") {
                 showHousehold(n, h);
             } else {
