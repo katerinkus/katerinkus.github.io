@@ -62,8 +62,8 @@ function aggregateHouseholdsByYear(households) {
 function drawPlanet(household) {
     document.getElementById("household-planet-2018").style.height = 100 * household["2018"]["totals"]["Planets"] + "px";
     document.getElementById("household-planet-2017").style.height = 100 * household["2017"]["totals"]["Planets"] + "px";
-    document.getElementById("planet-count-2018").innerHTML = household["2018"]["totals"]["Planets"] + " planets";
-    document.getElementById("planet-count-2017").innerHTML = household["2017"]["totals"]["Planets"] + " planets";
+    document.getElementById("planet-count-2018").innerHTML = household["2018"]["totals"]["Planets"] + " planets<br>(" + household["2018"]["totals"]["Per Capita"] + " gha)";
+    document.getElementById("planet-count-2017").innerHTML = household["2017"]["totals"]["Planets"] + " planets<br>(" + household["2017"]["totals"]["Per Capita"] + " gha)";
 }
 
 function drawComparisonNeighbourhood(name, neighbourhood, allHhs) {
@@ -691,36 +691,30 @@ function drawPlanets(data) {
         });
     }
 
-    Highcharts.chart("planets", {
-        chart: {
-            type: "column"
-        },
+    drawGenericBarChart("planets", "Planet comparison", cats, "Avg planets required", series);
+}
 
-        colors: ["#BB6FD4", "#6D74E3", "#EDAE3E", "#6BCAB6"],
+function drawGhas(data) {
+    var cats = [];
+    var totals = {};
 
-        title: {
-            text: "Planet comparison",
-            style: {
-                color: "#bc5c83",
-            }
-        },
-        xAxis: {
-            categories: cats
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: "Avg planets required"
-            }
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: series
-    });
+    for (n in data) {
+        totals[n] = [];
+        for (year in data[n]) {
+            cats.push(year);
+            totals[n].push(fixedFloat(data[n][year]["totals"]["Per Capita"], 3));
+        }
+    }
+
+    var series = [];
+    for (n in totals) {
+        series.push({
+            name: n,
+            data: totals[n]
+        });
+    }
+
+    drawGenericBarChart("ghas", "Per capita GHA comparison", cats, "Avg per capita GHA", series);
 }
 
 function drawGenericBarChart(divId, title, categories, yTitle, data) {
@@ -819,6 +813,7 @@ function drawCategoryComparisons(data) {
 function drawCompareAll(data) {
     var aggregated = aggregateNeighbourhoodsByYear(data);
     drawPlanets(aggregated);
+    drawGhas(aggregated);
     drawCategoryComparisons(aggregated);
 }
 
