@@ -171,7 +171,7 @@ var neighbourhoods = {
           "Air travel": 0.22327437024
         }, 
         "totals": {
-          "Per Capita": 9.7, 
+          "Per Capita": 2.42, 
           "Planets": 1.4
         }
       }, 
